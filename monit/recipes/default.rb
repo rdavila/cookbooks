@@ -25,7 +25,9 @@ when 'ubuntu', 'debian'
   
 end
 
+directory "/etc/monit.d"
+
 service "monit"  do
   supports :status => true, :restart => true, :reload => true
-  action [ :enable, :start ]
+  action [ :enable, :restart ]
 end
