@@ -1,3 +1,10 @@
+user "www-data"  do
+  comment "web apps user"
+  system true
+  shell "/bin/false"
+  group "www-data"
+end
+
 script "install_nginx"  do
   creates '/opt/nginx/sbin/nginx'
   interpreter "bash"
@@ -11,6 +18,14 @@ script "install_nginx"  do
   make
   make install
   EOH
+end
+
+directory "/var/log/nginx" do
+  owner "root"
+  group "root"
+  mode "0644"
+  action :create
+  not_if "test -d /var/log/nginx"
 end
 
 directory "/etc/nginx/vhosts" do
@@ -43,7 +58,7 @@ end
 
 service "apache" do
   case node[:platform]
-  when "CentOS","RedHat","Fedora"
+  when "centos"
     service_name "httpd"
   else
     service_name "apache2"
