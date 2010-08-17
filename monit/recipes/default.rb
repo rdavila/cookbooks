@@ -7,7 +7,7 @@ when 'centos'
 
   cookbook_file "/etc/monit.conf" do
     source "monit.conf"
-    mode "0644"
+    mode "0700"
   end
 when 'ubuntu', 'debian'
   apt_package "monit" do
