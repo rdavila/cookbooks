@@ -21,13 +21,13 @@ end
 
 node[:applications].each do |app|
   user app[:username] do
-    home "/var/www/vhosts/#{app[:username]}"
+    home "/var/www/vhosts/#{app[:app_name]}"
     shell "/bin/bash"
   end
 
   directory "/var/www/vhosts/#{app[:app_name]}" do
     owner app[:username]
-    group app[:username]
+    group "www-data"
     recursive true
     not_if "test -d /var/www/vhosts/#{app[:app_name]}"
   end
