@@ -13,8 +13,6 @@
 set -u
 set -e
 
-set -e
-
 sig () {
   test -s "$PID" && kill -$1 `cat "$PID"`
 }
@@ -67,7 +65,7 @@ setup () {
   export PID=$RAILS_ROOT/tmp/pids/unicorn.pid
   export OLD_PID="$PID.oldbin"
 
-  CMD="/usr/bin/unicorn_rails -c config/unicorn.rb -E $RAILS_ENV -D"
+  CMD="/opt/ree/bin/unicorn_rails -c config/unicorn.rb -E $RAILS_ENV -D"
 }
 
 start_stop () {

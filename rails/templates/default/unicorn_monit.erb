@@ -1,7 +1,7 @@
 check process unicorn_<%= @environment %>_<%= @app_name %>
   with pidfile /var/www/vhosts/<%= @app_name %>/shared/pids/unicorn.pid
-  start program = "/etc/init.d/unicorn start <%= @app_name %>"
-  stop program = "/etc/init.d/unicorn stop <%= @app_name %>"
+  start program = "/etc/init.d/unicorn start /etc/unicorn/<%= @app_name %>.conf"
+  stop program = "/etc/init.d/unicorn stop /etc/unicorn/<%= @app_name %>.conf"
   if mem is greater than 300.0 MB for 1 cycles then restart # eating up memory?
   if cpu is greater than 50% for 2 cycles then alert # send an email to admin
   if cpu is greater than 80% for 3 cycles then restart # hung process?

@@ -16,12 +16,8 @@ server {
 
   root /var/www/vhosts/<%= @app_name %>/httpdocs/current/public;
 
-  log_format main '$remote_addr - $remote_user [$time_local] '
-                  '"$request" $status $body_bytes_sent "$http_referer" '
-                  '"$http_user_agent" "$http_x_forwarded_for"' ;
-
-  access_log /var/log/nginx/<%= @app_name %>.access.log   main;
-  error_log /var/log/nginx/<%= @app_name %>.error.log   main;
+  access_log /var/log/nginx/<%= @app_name %>.access.log;
+  error_log /var/log/nginx/<%= @app_name %>.error.log;
 
   error_page   500 502 503 504 /500.html;
   client_max_body_size 50M;
