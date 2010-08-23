@@ -15,7 +15,7 @@ node[:non_rails_apps].each do |app|
   end
 
   template "/etc/nginx/vhosts/#{app[:app_name]}.vhost" do
-    source "nginx_vhost.conf.erb"
+    source "vhost.conf.erb"
     variables({
       :app_name => app[:app_name]
     })
