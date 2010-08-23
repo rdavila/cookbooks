@@ -1,8 +1,12 @@
+package "pcre-devel"
+
+group "www-data"
+
 user "www-data"  do
   comment "web apps user"
   system true
   shell "/bin/false"
-  group "www-data"
+  gid "www-data"
 end
 
 script "install_nginx"  do
@@ -18,6 +22,14 @@ script "install_nginx"  do
   make
   make install
   EOH
+end
+
+directory "/var/www/vhosts" do
+  owner "root"
+  group "root"
+  mode "0644"
+  action :create
+  not_if "test -d /var/www/vhosts"
 end
 
 directory "/var/log/nginx" do
