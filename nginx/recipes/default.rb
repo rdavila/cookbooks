@@ -27,7 +27,7 @@ end
 directory "/var/www/vhosts" do
   owner "root"
   group "root"
-  mode "0644"
+  mode "0755"
   action :create
   not_if "test -d /var/www/vhosts"
 end
@@ -35,7 +35,7 @@ end
 directory "/var/log/nginx" do
   owner "root"
   group "root"
-  mode "0644"
+  mode "0755"
   action :create
   not_if "test -d /var/log/nginx"
 end
